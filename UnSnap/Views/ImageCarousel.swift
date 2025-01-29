@@ -27,7 +27,6 @@ struct ImageCarousel: View {
     }
 }
 
-// Separate component for image cell
 struct ImageCell: View {
     let image: UnsplashImage
     let onTap: () -> Void
@@ -73,15 +72,13 @@ struct ImageCell: View {
     
     private func loadImage() {
         let urlString = image.urls.small
-        
-        // Check cache first
+      
         if let cachedImage = ImageCache.shared.get(urlString) {
             self.loadedImage = cachedImage
             self.isLoading = false
             return
         }
         
-        // If not in cache, load from network
         guard let url = URL(string: urlString) else {
             self.isLoading = false
             return
@@ -99,14 +96,12 @@ struct ImageCell: View {
     }
 }
 
-// Preview provider for easier development
 struct ImageCarousel_Previews: PreviewProvider {
     static var previews: some View {
         ImageCarousel(images: [], selectedImage: .constant(nil))
     }
 }
 
-// Safe array subscript
 extension Array {
     subscript(safe index: Index) -> Element? {
         indices.contains(index) ? self[index] : nil

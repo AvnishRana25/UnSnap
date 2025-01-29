@@ -1,5 +1,4 @@
 import Foundation
-
 struct UnsplashImage: Codable, Identifiable {
     let id: String
     let description: String?
@@ -22,20 +21,26 @@ struct UnsplashImage: Codable, Identifiable {
 }
 
 struct ImageURLs: Codable {
+    
     let raw: String
     let full: String
     let regular: String
     let small: String
     let thumb: String
+    
 }
 
 struct User: Codable {
+    
     let name: String
     let username: String
+    
 }
 
 extension UnsplashImage: Equatable {
+    
     static func == (lhs: UnsplashImage, rhs: UnsplashImage) -> Bool {
         lhs.id == rhs.id
+        
     }
 } 

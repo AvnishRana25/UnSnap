@@ -14,7 +14,6 @@ class FavoritesManager: ObservableObject {
                 let decoder = JSONDecoder()
                 favoriteImages = try decoder.decode([UnsplashImage].self, from: data)
                 print("Successfully loaded \(favoriteImages.count) favorites")
-                // Debug print URLs
                 favoriteImages.forEach { image in
                     print("Loaded image ID: \(image.id)")
                     print("Small URL: \(image.urls.small)")

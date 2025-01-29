@@ -7,15 +7,13 @@ struct SearchView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // Custom Header
             Text("Discover")
                 .font(.system(size: 34, weight: .bold, design: .rounded))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, 20)
                 .padding(.top, 16)
                 .padding(.bottom, 24)
-            
-            // Modern Search Bar
+       
             HStack(spacing: 12) {
                 Image(systemName: "magnifyingglass")
                     .foregroundColor(.gray)
@@ -45,8 +43,7 @@ struct SearchView: View {
                     .shadow(color: .black.opacity(0.05), radius: 10, x: 0, y: 5)
             )
             .padding(.horizontal, 20)
-            
-            // Content Area
+      
             if viewModel.isLoading {
                 Spacer()
                 ProgressView()
@@ -54,7 +51,6 @@ struct SearchView: View {
                     .padding()
                 Spacer()
             } else if viewModel.images.isEmpty && !searchText.isEmpty {
-                // Empty State
                 VStack(spacing: 20) {
                     Image(systemName: "photo.on.rectangle.angled")
                         .font(.system(size: 50))

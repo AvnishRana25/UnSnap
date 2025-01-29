@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "Adobe Express Image Resizer.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -12,6 +13,7 @@
           "value" : "dark"
         }
       ],
+      "filename" : "Adobe Express Image Resizer 1.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"
@@ -23,6 +25,7 @@
           "value" : "tinted"
         }
       ],
+      "filename" : "Adobe Express Image Resizer 2.png",
       "idiom" : "universal",
       "platform" : "ios",
       "size" : "1024x1024"

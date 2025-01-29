@@ -5,7 +5,7 @@ class ImageCache {
     private var cache = NSCache<NSString, UIImage>()
     
     private init() {
-        cache.countLimit = 100 // Adjust based on your needs
+        cache.countLimit = 100 
     }
     
     func set(_ image: UIImage, for url: String) {

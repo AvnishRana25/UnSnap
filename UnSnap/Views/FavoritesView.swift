@@ -7,7 +7,6 @@ struct FavoritesView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            // Custom Header
             Text("Favorites")
                 .font(.system(size: 34, weight: .bold, design: .rounded))
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -18,7 +17,6 @@ struct FavoritesView: View {
             if favoritesManager.favoriteImages.isEmpty {
                 Spacer()
                 VStack(spacing: 24) {
-                    // Empty State Icon
                     ZStack {
                         Circle()
                             .fill(Color(.systemGray6))
@@ -45,7 +43,6 @@ struct FavoritesView: View {
                 }
                 Spacer()
             } else {
-                // Favorites Grid
                 ScrollView {
                     ImageCarousel(images: favoritesManager.favoriteImages, selectedImage: $selectedImage)
                 }
@@ -62,7 +59,7 @@ struct FavoritesView: View {
         .alert("Error", isPresented: $showError) {
             Button("OK", role: .cancel) { }
         } message: {
-            Text("There was an error loading your favorites. Please try again.")
+            Text("There was an error loading your favorites. Try again.")
         }
     }
 } 

@@ -15,8 +15,6 @@ struct ImageDetailView: View {
             GeometryReader { geometry in
                 ZStack(alignment: .bottom) {
                     Color.black.edgesIgnoringSafeArea(.all)
-                    
-                    // Main Image
                     AsyncImage(url: URL(string: image.urls.full)) { phase in
                         switch phase {
                         case .empty:
@@ -87,8 +85,7 @@ struct ImageDetailView: View {
                             EmptyView()
                         }
                     }
-                    
-                    // Metadata overlay
+        
                     if showMetadata {
                         VStack(alignment: .leading, spacing: 8) {
                             if let description = image.description {

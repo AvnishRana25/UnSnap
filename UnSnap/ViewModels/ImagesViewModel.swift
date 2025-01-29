@@ -6,19 +6,17 @@ class ImagesViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var retryCount = 0
-    
     private let service = UnsplashService()
     private let maxRetries = 3
     
     func fetchImages() {
         isLoading = true
         errorMessage = nil
-        
         Task {
             do {
                 let fetchedImages = try await service.fetchImages()
                 self.images = fetchedImages
-                self.retryCount = 0 // Reset retry count on success
+                self.retryCount = 0
             } catch let error as NetworkError {
                 if error == .networkError && retryCount < maxRetries {
                     retryCount += 1
@@ -34,7 +32,7 @@ class ImagesViewModel: ObservableObject {
     }
     
     private func retryFetch() async {
-        try? await Task.sleep(nanoseconds: UInt64(1_000_000_000)) // Wait 1 second before retry
+        try? await Task.sleep(nanoseconds: UInt64(1_000_000_000))
         await MainActor.run {
             fetchImages()
         }
@@ -45,10 +43,8 @@ class ImagesViewModel: ObservableObject {
             errorMessage = "Please enter a search term"
             return
         }
-        
         isLoading = true
         errorMessage = nil
-        
         Task {
             do {
                 let searchResults = try await service.searchImages(query: query)

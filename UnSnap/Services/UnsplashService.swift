@@ -13,19 +13,19 @@ enum NetworkError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidURL:
-            return "Invalid URL. Please try again."
+            return "Invalid URL.Try again."
         case .invalidResponse:
-            return "Server error. Please try again later."
+            return "Server error.Try again later."
         case .invalidData:
-            return "No images found. Please try again."
+            return "No images found.Try again."
         case .decodingError:
-            return "Error processing data. Please try again."
+            return "Error processing data.Try again."
         case .unauthorized:
-            return "Unauthorized access. Please check your API key."
+            return "Unauthorized access.Please check your API key."
         case .forbidden:
-            return "Access forbidden. Please check your permissions."
+            return "Access forbidden.Please check your permissions."
         case .rateLimitExceeded:
-            return "Rate limit exceeded. Please try again later."
+            return "Rate limit exceeded.Try again later."
         case .networkError:
             return "Network error. Please check your internet connection and try again."
         }
@@ -33,8 +33,7 @@ enum NetworkError: LocalizedError {
 }
 
 class UnsplashService {
-    // Your access key should be the one you got from Unsplash API
-    private let accessKey = "NX0N3gch2GTAs3FGkS4CHIBc3Vvcrk5TKG_Q4vn0Sj4"
+    private let accessKey = "API KEY"    //Insert your API Key Here
     private let baseURL = "https://api.unsplash.com"
     
     func fetchImages() async throws -> [UnsplashImage] {
@@ -45,7 +44,7 @@ class UnsplashService {
         var request = URLRequest(url: url)
         request.setValue("Client-ID \(accessKey)", forHTTPHeaderField: "Authorization")
         request.cachePolicy = .reloadIgnoringLocalCacheData
-        request.timeoutInterval = 60 // Increased timeout
+        request.timeoutInterval = 60
         
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
@@ -54,7 +53,7 @@ class UnsplashService {
                 throw NetworkError.invalidResponse
             }
             
-            print("HTTP Status Code: \(httpResponse.statusCode)") // Debug print
+            print("HTTP Status Code: \(httpResponse.statusCode)")
             
             switch httpResponse.statusCode {
             case 200:
@@ -65,9 +64,9 @@ class UnsplashService {
                     }
                     return images
                 } catch {
-                    print("Decoding error: \(error.localizedDescription)") // Debug print
+                    print("Decoding error: \(error.localizedDescription)")
                     if let responseString = String(data: data, encoding: .utf8) {
-                        print("Response data: \(responseString)") // Debug print
+                        print("Response data: \(responseString)")
                     }
                     throw NetworkError.decodingError
                 }
@@ -83,7 +82,7 @@ class UnsplashService {
         } catch let error as NetworkError {
             throw error
         } catch {
-            print("Network error: \(error.localizedDescription)") // Debug print
+            print("Network error: \(error.localizedDescription)") 
             throw NetworkError.networkError
         }
     }
